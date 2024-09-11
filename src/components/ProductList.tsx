@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const ProductList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { items: products, status, error } = useSelector((state: RootState) => state.products);
+  const { filteredItems: products, status, error, searchTerm } = useSelector((state: RootState) => state.products);
 
   useEffect(() => {
     if (status === "idle") {
@@ -40,13 +40,17 @@ const ProductList: React.FC = () => {
     <div className="bg-gray-100 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-extrabold text-gray-900 text-center mb-12">
-          Featured Computer Components
+          {searchTerm ? `Search Results for "${searchTerm}"` : "Featured Computer Components"}
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        {products.length === 0 ? (
+          <p className="text-center text-xl text-gray-600">No products found.</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -15,23 +15,27 @@ export interface Product {
 
 interface ProductsState {
   items: Product[];
+  filteredItems: Product[];
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
+  searchTerm: string;
 }
 
 const initialState: ProductsState = {
   items: [],
+  filteredItems: [],
   status: "idle",
   error: null,
+  searchTerm: "",
 };
 
 export const productData: Product[] = [
   {
     id: 1,
-    name: "Placa de Vídeo Gigabyte NVIDIA GeForce RTX 3060 WINDFORCE OC",
+    name: "Gigabyte NVIDIA GeForce RTX 3060 WINDFORCE OC Graphics Card",
     specs: {
-      memoryClock: 1500 + " Mhz",
-      memorySize: 12 + " Gb",
+      memoryClock: "1500 MHz",
+      memorySize: "12 GB",
       memoryType: "GDDR6",
     },
     price: 1799,
@@ -40,10 +44,10 @@ export const productData: Product[] = [
   },
   {
     id: 2,
-    name: "Placa De Vídeo Gigabyte AMD Radeon RX 7600 Gaming OC",
+    name: "Gigabyte AMD Radeon RX 7600 Gaming OC Graphics Card",
     specs: {
-      memoryClock: 18 + " Gbps",
-      memorySize: 8 + " Gb",
+      memoryClock: "18 Gbps",
+      memorySize: "8 GB",
       memoryType: "GDDR6",
     },
     price: 1799,
@@ -52,10 +56,10 @@ export const productData: Product[] = [
   },
   {
     id: 3,
-    name: "Placa de Vídeo PowerColor Fighter Radeon RX 6600",
+    name: "PowerColor Fighter Radeon RX 6600 Graphics Card",
     specs: {
-      memoryClock: 14 + " Gbps",
-      memorySize: 8 + " Gb",
+      memoryClock: "14 Gbps",
+      memorySize: "8 GB",
       memoryType: "GDDR6",
     },
     price: 1299,
@@ -64,10 +68,10 @@ export const productData: Product[] = [
   },
   {
     id: 4,
-    name: "Placa de Vídeo INNO3D GeForce RTX 3060 TWIN X2",
+    name: "INNO3D GeForce RTX 3060 TWIN X2 Graphics Card",
     specs: {
-      memoryClock: 15 + " Gbps",
-      memorySize: 12 + " Gb",
+      memoryClock: "15 Gbps",
+      memorySize: "12 GB",
       memoryType: "GDDR6",
     },
     price: 1699,
@@ -76,10 +80,10 @@ export const productData: Product[] = [
   },
   {
     id: 5,
-    name: "Placa de Vídeo Galax GeForce GTX 1650 EX PLUS",
+    name: "Galax GeForce GTX 1650 EX PLUS Graphics Card",
     specs: {
-      memoryClock: 18 + " Gbps",
-      memorySize: 4 + " Gb",
+      memoryClock: "18 Gbps",
+      memorySize: "4 GB",
       memoryType: "GDDR6",
     },
     price: 879,
@@ -88,10 +92,10 @@ export const productData: Product[] = [
   },
   {
     id: 6,
-    name: "Placa De Video Gigabyte GeForce RTX 4070 Ti Eagle OC",
+    name: "Gigabyte GeForce RTX 4070 Ti Eagle OC Graphics Card",
     specs: {
-      memoryClock: 2625 + " Mhz",
-      memorySize: 12 + "Gb",
+      memoryClock: "2625 MHz",
+      memorySize: "12 GB",
       memoryType: "GDDR6",
     },
     price: 5999,
@@ -100,10 +104,10 @@ export const productData: Product[] = [
   },
   {
     id: 7,
-    name: "Placa De Vídeo Galax NVIDIA GeForce RTX 4070 EX Gamer",
+    name: "Galax NVIDIA GeForce RTX 4070 EX Gamer Graphics Card",
     specs: {
-      memoryClock: 2550 + " Mhz",
-      memorySize: 12 + "Gb",
+      memoryClock: "2550 MHz",
+      memorySize: "12 GB",
       memoryType: "GDDR6",
     },
     price: 4479,
@@ -112,10 +116,10 @@ export const productData: Product[] = [
   },
   {
     id: 8,
-    name: "Placa de Vídeo Asus Dual NVIDIA GeForce RTX 4060 Ti OC",
+    name: "Asus Dual NVIDIA GeForce RTX 4060 Ti OC Graphics Card",
     specs: {
-      memoryClock: 2550 + " Mhz",
-      memorySize: 8 + "Gb",
+      memoryClock: "2550 MHz",
+      memorySize: "8 GB",
       memoryType: "GDDR6",
     },
     price: 2399,
@@ -124,10 +128,10 @@ export const productData: Product[] = [
   },
   {
     id: 9,
-    name: "Placa de Vídeo PowerColor Hellhound AMD Radeon RX 6650 XT",
+    name: "PowerColor Hellhound AMD Radeon RX 6650 XT Graphics Card",
     specs: {
-      memoryClock: 2550 + " Mhz",
-      memorySize: 12 + "Gb",
+      memoryClock: "2550 MHz",
+      memorySize: "12 GB",
       memoryType: "GDDR6",
     },
     price: 2849,
@@ -136,10 +140,10 @@ export const productData: Product[] = [
   },
   {
     id: 10,
-    name: "Placa de Vídeo AsRock AMD Radeon RX 7600 Phantom Gaming OC",
+    name: "AsRock AMD Radeon RX 7600 Phantom Gaming OC Graphics Card",
     specs: {
-      memoryClock: 2550 + " Mhz",
-      memorySize: 8 + "Gb",
+      memoryClock: "2550 MHz",
+      memorySize: "8 GB",
       memoryType: "GDDR6",
     },
     price: 1999,
@@ -148,10 +152,10 @@ export const productData: Product[] = [
   },
   {
     id: 11,
-    name: "Placa de Vídeo INNO3D NVIDIA GeForce RTX 4070 X3 OC",
+    name: "INNO3D NVIDIA GeForce RTX 4070 X3 OC Graphics Card",
     specs: {
-      memoryClock: 1920 + " Mhz",
-      memorySize: 12 + "Gb",
+      memoryClock: "1920 MHz",
+      memorySize: "12 GB",
       memoryType: "GDDR6",
     },
     price: 4299,
@@ -160,10 +164,10 @@ export const productData: Product[] = [
   },
   {
     id: 12,
-    name: "Placa de Vídeo MSI AMD Radeon RX 6650 XT MECH 2X, OC",
+    name: "MSI AMD Radeon RX 6650 XT MECH 2X OC Graphics Card",
     specs: {
-      memoryClock: 2699 + " Mhz",
-      memorySize: 8 + "Gb",
+      memoryClock: "2699 MHz",
+      memorySize: "8 GB",
       memoryType: "GDDR6",
     },
     price: 1999,
@@ -184,7 +188,14 @@ export const fetchProducts = createAsyncThunk(
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    setSearchTerm: (state, action: PayloadAction<string>) => {
+      state.searchTerm = action.payload.toLowerCase();
+      state.filteredItems = state.items.filter(product =>
+        product.name.toLowerCase().includes(state.searchTerm)
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -195,6 +206,7 @@ const productsSlice = createSlice({
         (state, action: PayloadAction<Product[]>) => {
           state.status = "succeeded";
           state.items = action.payload;
+          state.filteredItems = action.payload;
         }
       )
       .addCase(fetchProducts.rejected, (state, action) => {
@@ -204,4 +216,5 @@ const productsSlice = createSlice({
   },
 });
 
+export const { setSearchTerm } = productsSlice.actions;
 export default productsSlice.reducer;

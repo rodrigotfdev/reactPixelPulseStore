@@ -5,6 +5,7 @@ import ProductList from "./components/ProductList";
 import ProductDetails from "./components/ProductDetails";
 import Footer from "./components/Footer";
 
+
 const App: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
