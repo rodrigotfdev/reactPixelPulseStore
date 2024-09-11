@@ -16,6 +16,9 @@ const ProductDetails: React.FC = () => {
   const memoryClock = decodeURIComponent(searchParams.get("memoryClock") || "");
   const memorySize = decodeURIComponent(searchParams.get("memorySize") || "");
   const memoryType = decodeURIComponent(searchParams.get("memoryType") || "");
+  const productCategory = decodeURIComponent(
+    searchParams.get("productCategory") || ""
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -30,12 +33,35 @@ const ProductDetails: React.FC = () => {
         photoName,
         specs: { memoryClock, memorySize, memoryType },
         soldOut: false,
+        productCategory,
       })
     );
     toast.success(`${name} added to cart!`, {
       duration: 3000,
       icon: "🛒",
     });
+  };
+
+  const getCategoryDisplay = (category: string) => {
+    console.log("getCategoryDisplay input:", category);
+    const result = (() => {
+      switch (category.toUpperCase()) {
+        case "GPU":
+          return "Graphics Card";
+        case "CPU":
+          return "Processor";
+        case "RAM":
+          return "Memory";
+        case "STORAGE":
+          return "Storage Device";
+        case "MOTHERBOARD":
+          return "Motherboard";
+        default:
+          return "Computer Component";
+      }
+    })();
+    console.log("getCategoryDisplay output:", result);
+    return result;
   };
 
   return (
@@ -50,37 +76,67 @@ const ProductDetails: React.FC = () => {
             />
           </div>
           <div className="p-8 md:w-1/2">
-            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-              GPU
+            <div
+              className={`${
+                productCategory === "GPU"
+                  ? "bg-blue-500"
+                  : productCategory === "CPU"
+                  ? "bg-green-500"
+                  : "bg-gray-500"
+              }  text-white px-2 py-1 rounded-full inline-block mb-2`}
+            >
+              {getCategoryDisplay(productCategory)}
             </div>
             <h2 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
               {name}
             </h2>
-            <p className="mt-4 text-xl text-gray-500">
-              Experience next-level gaming with this powerful graphics card.
-            </p>
+            <p className="mt-4 text-xl text-gray-500"></p>
             <div className="mt-10">
               <h3 className="text-lg font-medium text-gray-900">
                 Specifications
               </h3>
               <dl className="mt-2 border-t border-b border-gray-200 divide-y divide-gray-200">
                 <div className="py-3 flex justify-between text-sm font-medium">
-                  <dt className="text-gray-500">Memory Clock</dt>
+                  <dt className="text-gray-500">
+                    {productCategory === "GPU"
+                      ? "Memory Clock"
+                      : productCategory === "CPU"
+                      ? "Clock Speed"
+                      : productCategory === "MOTHERBOARD"
+                      ? "Chipset"
+                      : "Memory Clock"}
+                  </dt>
                   <dd className="text-gray-900">{memoryClock}</dd>
                 </div>
                 <div className="py-3 flex justify-between text-sm font-medium">
-                  <dt className="text-gray-500">Memory Size</dt>
+                  <dt className="text-gray-500">
+                    {productCategory === "GPU"
+                      ? "Memory Size"
+                      : productCategory === "CPU"
+                      ? "Cores"
+                      : productCategory === "MOTHERBOARD"
+                      ? "Socket"
+                      : "Memory Size"}
+                  </dt>
                   <dd className="text-gray-900">{memorySize}</dd>
                 </div>
                 <div className="py-3 flex justify-between text-sm font-medium">
-                  <dt className="text-gray-500">Memory Type</dt>
+                  <dt className="text-gray-500">
+                    {productCategory === "GPU"
+                      ? "Memory Type"
+                      : productCategory === "MOTHERBOARD"
+                      ? "Memory Type"
+                      : productCategory === "CPU"
+                      ? "Socket"
+                      : "Memory Type"}
+                  </dt>
                   <dd className="text-gray-900">{memoryType}</dd>
                 </div>
               </dl>
             </div>
             <div className="mt-10 flex items-center justify-between">
               <span className="text-3xl font-bold text-gray-900">
-                R$ {price.toFixed(2)}
+                $ {price.toFixed(2)}
               </span>
               <button
                 onClick={handleAddToCart}

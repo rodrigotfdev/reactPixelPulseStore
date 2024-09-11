@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../store/store";
-import { fetchProducts, Product } from "../store/productsSlice";
+import { fetchProducts, Product, setCurrentPage } from "../store/productsSlice";
 import { Link } from "react-router-dom";
 
 const ProductList: React.FC = () => {
@@ -11,6 +11,9 @@ const ProductList: React.FC = () => {
     status,
     error,
     searchTerm,
+    currentPage,
+    itemsPerPage,
+    totalPages,
   } = useSelector((state: RootState) => state.products);
 
   useEffect(() => {
@@ -18,6 +21,12 @@ const ProductList: React.FC = () => {
       dispatch(fetchProducts());
     }
   }, [status, dispatch]);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber: number) => dispatch(setCurrentPage(pageNumber));
 
   if (status === "loading") {
     return (
@@ -49,16 +58,23 @@ const ProductList: React.FC = () => {
             ? `Search Results for "${searchTerm}"`
             : "Featured Computer Components"}
         </h2>
-        {products.length === 0 ? (
+        {currentItems.length === 0 ? (
           <p className="text-center text-xl text-gray-600">
             No products found.
           </p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {currentItems.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              paginate={paginate}
+            />
+          </>
         )}
       </div>
     </div>
@@ -75,6 +91,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       memoryClock: product.specs.memoryClock,
       memorySize: product.specs.memorySize,
       memoryType: product.specs.memoryType,
+      productCategory: product.productCategory,
     }).toString();
 
   return (
@@ -97,12 +114,14 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             {product.name}
           </h3>
         </Link>
+        <p className={`${product.productCategory === "GPU" ? "bg-blue-500" : product.productCategory === "CPU" ? "bg-green-500" : "bg-gray-500" }  text-white px-2 py-1 rounded-full inline-block mb-2`}>{product.productCategory}</p>
+        
         <p className="text-sm text-gray-600 mb-4">
           {product.specs.memorySize} {product.specs.memoryType}
         </p>
         <div className="flex justify-between items-center">
           <span className="text-2xl font-bold text-indigo-600">
-            R$ {product.price.toFixed(2)}
+            $ {product.price.toFixed(2)}
           </span>
           <Link
             to={productUrl}
@@ -113,6 +132,39 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         </div>
       </div>
     </div>
+  );
+};
+
+const Pagination: React.FC<{
+  currentPage: number;
+  totalPages: number;
+  paginate: (pageNumber: number) => void;
+}> = ({ currentPage, totalPages, paginate }) => {
+  const pageNumbers = [];
+
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
+
+  return (
+    <nav className="flex justify-center mt-8">
+      <ul className="flex">
+        {pageNumbers.map((number) => (
+          <li key={number}>
+            <button
+              onClick={() => paginate(number)}
+              className={`mx-1 px-3 py-2 rounded-lg ${
+                currentPage === number
+                  ? "bg-indigo-600 text-white"
+                  : "bg-white text-indigo-600 hover:bg-indigo-100"
+              }`}
+            >
+              {number}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
 
