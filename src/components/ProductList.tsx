@@ -1,37 +1,50 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState, AppDispatch } from '../store/store'
+import { fetchProducts, Product } from '../store/productsSlice'
 
-interface Product {
-  id: number
-  name: string
-  price: number
+const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+  return (
+    <div className="product-card">
+      <img src={product.photoName} alt={product.name} />
+      <h3>{product.name}</h3>
+      <p>Price: R$ {product.price.toFixed(2)}</p>
+      <ul>
+        <li>Memory Clock: {product.specs.memoryClock}</li>
+        <li>Memory Size: {product.specs.memorySize}</li>
+        <li>Memory Type: {product.specs.memoryType}</li>
+      </ul>
+      {product.soldOut && <p className="sold-out">Sold Out</p>}
+    </div>
+  )
 }
 
 const ProductList: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([])
+  const dispatch = useDispatch<AppDispatch>()
+  const { items: products, status, error } = useSelector((state: RootState) => state.products)
 
   useEffect(() => {
-    // TODO: Replace with actual API call when available
-    const mockFetch = async () => {
-      const mockData: Product[] = [
-        { id: 1, name: 'CPU', price: 299.99 },
-        { id: 2, name: 'GPU', price: 499.99 },
-        { id: 3, name: 'RAM', price: 89.99 },
-      ]
-      setProducts(mockData)
+    if (status === 'idle') {
+      dispatch(fetchProducts())
     }
-    mockFetch()
-  }, [])
+  }, [status, dispatch])
+
+  if (status === 'loading') {
+    return <div>Loading...</div>
+  }
+
+  if (status === 'failed') {
+    return <div>Error: {error}</div>
+  }
 
   return (
     <div className="product-list">
       <h2>Computer Components</h2>
-      <ul>
+      <div className="product-grid">
         {products.map((product) => (
-          <li key={product.id}>
-            {product.name} - ${product.price}
-          </li>
+          <ProductCard key={product.id} product={product} />
         ))}
-      </ul>
+      </div>
     </div>
   )
 }
