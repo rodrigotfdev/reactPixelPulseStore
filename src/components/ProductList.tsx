@@ -41,6 +41,15 @@ const ProductList: React.FC = () => {
 };
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+    const productUrl = `/product/${product.id}?` + new URLSearchParams({
+      name: product.name,
+      price: product.price.toString(),
+      photoName: product.photoName,
+      memoryClock: product.specs.memoryClock,
+      memorySize: product.specs.memorySize,
+      memoryType: product.specs.memoryType
+    }).toString();
+  
     return (
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <img
@@ -58,7 +67,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             <p className="mt-2 text-red-500 font-semibold">Sold Out</p>
           )}
           <Link
-            to={`/product/${product.id}?name=${encodeURIComponent(product.name)}&price=${product.price}&photoName=${encodeURIComponent(product.photoName)}&memoryClock=${encodeURIComponent(product.specs.memoryClock)}&memorySize=${encodeURIComponent(product.specs.memorySize)}&memoryType=${encodeURIComponent(product.specs.memoryType)}`}
+            to={productUrl}
             className="mt-4 block w-full text-center bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
           >
             View More

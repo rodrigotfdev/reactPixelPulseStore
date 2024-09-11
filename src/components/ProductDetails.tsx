@@ -6,40 +6,53 @@ const ProductDetails: React.FC = () => {
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
 
-  const name = searchParams.get('name') || ''
+  const name = decodeURIComponent(searchParams.get('name') || '')
   const price = parseFloat(searchParams.get('price') || '0')
-  const photoName = searchParams.get('photoName') || ''
-  const memoryClock = searchParams.get('memoryClock') || ''
-  const memorySize = searchParams.get('memorySize') || ''
-  const memoryType = searchParams.get('memoryType') || ''
+  const photoName = decodeURIComponent(searchParams.get('photoName') || '')
+  const memoryClock = decodeURIComponent(searchParams.get('memoryClock') || '')
+  const memorySize = decodeURIComponent(searchParams.get('memorySize') || '')
+  const memoryType = decodeURIComponent(searchParams.get('memoryType') || '')
 
   return (
-    <>
-      <div className="product-detail-container flex flex-row bg-white rounded-md items-center mx-auto my-28 w-11/12 h-full">
-        <div className="left-detail-container w-7/12 h-full flex items-center justify-center rounded-md">
-          <img src={`/${photoName}`} alt={name} className="w-10/12" />
-        </div>
-        <div className="right-detail-container w-5/12 h-screen bg-gray-500 text-white flex flex-col p-10 rounded-e-md">
-          <div className="right-detail-name w-full text-3xl mb-28">
-            <h2>{name}</h2>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="bg-white shadow-xl rounded-lg overflow-hidden">
+        <div className="md:flex">
+          <div className="md:flex-shrink-0 md:w-1/2">
+            <img className="h-full w-full object-cover md:object-center" src={`/${photoName}`} alt={name} />
           </div>
-          <div className="product-right-specs h-full">
-            <h3 className="m-3 text-2xl">Product Specifications:</h3>
-            <p className="m-3 text-xl">Memory Clock: {memoryClock}</p>
-            <p className="m-3 text-xl">Memory Size: {memorySize}</p>
-            <p className="m-3 text-xl">Memory Type: {memoryType}</p>
-          </div>
-          <div className="product-right-purchase flex flex-col mb-4">
-            <span className="bg-black rounded-lg h-10 font-extrabold flex items-center justify-center mb-5">
-              R$ {price.toFixed(2)}
-            </span>
-            <button className="bg-black rounded-lg h-10 font-bold uppercase hover:opacity-50">
-              Add to Cart
-            </button>
+          <div className="p-8 md:w-1/2">
+            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">GPU</div>
+            <h2 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">{name}</h2>
+            <p className="mt-4 text-xl text-gray-500">
+              Experience next-level gaming with this powerful graphics card.
+            </p>
+            <div className="mt-10">
+              <h3 className="text-lg font-medium text-gray-900">Specifications</h3>
+              <dl className="mt-2 border-t border-b border-gray-200 divide-y divide-gray-200">
+                <div className="py-3 flex justify-between text-sm font-medium">
+                  <dt className="text-gray-500">Memory Clock</dt>
+                  <dd className="text-gray-900">{memoryClock}</dd>
+                </div>
+                <div className="py-3 flex justify-between text-sm font-medium">
+                  <dt className="text-gray-500">Memory Size</dt>
+                  <dd className="text-gray-900">{memorySize}</dd>
+                </div>
+                <div className="py-3 flex justify-between text-sm font-medium">
+                  <dt className="text-gray-500">Memory Type</dt>
+                  <dd className="text-gray-900">{memoryType}</dd>
+                </div>
+              </dl>
+            </div>
+            <div className="mt-10 flex items-center justify-between">
+              <span className="text-3xl font-bold text-gray-900">R$ {price.toFixed(2)}</span>
+              <button className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Add to Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
