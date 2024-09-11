@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../store/store";
 import { fetchProducts, Product, setCurrentPage } from "../store/productsSlice";
@@ -16,11 +16,19 @@ const ProductList: React.FC = () => {
     totalPages,
   } = useSelector((state: RootState) => state.products);
 
+  const listRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (status === "idle") {
       dispatch(fetchProducts());
     }
   }, [status, dispatch]);
+
+  useEffect(() => {
+    if (listRef.current) {
+      listRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [currentPage]);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -51,7 +59,7 @@ const ProductList: React.FC = () => {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div ref={listRef} className="bg-gray-100 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-extrabold text-gray-900 text-center mb-12">
           {searchTerm
@@ -114,14 +122,15 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             {product.name}
           </h3>
         </Link>
-        <p className={`${product.productCategory === "GPU" ? "bg-blue-500" : product.productCategory === "CPU" ? "bg-green-500" : "bg-gray-500" }  text-white px-2 py-1 rounded-full inline-block mb-2`}>{product.productCategory}</p>
-        
+        <p className={`${product.productCategory === "GPU" ? "bg-blue-500" : product.productCategory === "CPU" ? "bg-green-500" : "bg-gray-500" }  text-white px-2 py-1 rounded-full inline-block mb-2`}>
+          {product.productCategory}
+        </p>
         <p className="text-sm text-gray-600 mb-4">
           {product.specs.memorySize} {product.specs.memoryType}
         </p>
         <div className="flex justify-between items-center">
           <span className="text-2xl font-bold text-indigo-600">
-            $ {product.price.toFixed(2)}
+            R$ {product.price.toFixed(2)}
           </span>
           <Link
             to={productUrl}

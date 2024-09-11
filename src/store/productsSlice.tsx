@@ -17,7 +17,7 @@ export interface Product {
 interface ProductsState {
   items: Product[];
   filteredItems: Product[];
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
   searchTerm: string;
   currentPage: number;
@@ -28,12 +28,21 @@ interface ProductsState {
 const initialState: ProductsState = {
   items: [],
   filteredItems: [],
-  status: 'idle',
+  status: "idle",
   error: null,
-  searchTerm: '',
+  searchTerm: "",
   currentPage: 1,
   itemsPerPage: 9,
   totalPages: 1,
+};
+
+const shuffleArray = (array: Product[]) => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
 };
 
 export const productData: Product[] = [
@@ -435,7 +444,7 @@ export const fetchProducts = createAsyncThunk(
   async () => {
     // Simulating API call with a delay
     await new Promise((resolve) => setTimeout(resolve, 500));
-    return productData;
+    return shuffleArray(productData); // Shuffle only when fetching
   }
 );
 
