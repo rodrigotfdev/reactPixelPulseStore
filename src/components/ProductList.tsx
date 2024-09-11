@@ -6,7 +6,12 @@ import { Link } from "react-router-dom";
 
 const ProductList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { filteredItems: products, status, error, searchTerm } = useSelector((state: RootState) => state.products);
+  const {
+    filteredItems: products,
+    status,
+    error,
+    searchTerm,
+  } = useSelector((state: RootState) => state.products);
 
   useEffect(() => {
     if (status === "idle") {
@@ -26,8 +31,8 @@ const ProductList: React.FC = () => {
     return (
       <div className="text-center text-2xl text-red-500 p-8 bg-red-100 rounded-lg max-w-2xl mx-auto mt-10">
         <p>Error: {error}</p>
-        <button 
-          onClick={() => dispatch(fetchProducts())} 
+        <button
+          onClick={() => dispatch(fetchProducts())}
           className="mt-4 px-6 py-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition duration-300"
         >
           Try Again
@@ -40,10 +45,14 @@ const ProductList: React.FC = () => {
     <div className="bg-gray-100 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-extrabold text-gray-900 text-center mb-12">
-          {searchTerm ? `Search Results for "${searchTerm}"` : "Featured Computer Components"}
+          {searchTerm
+            ? `Search Results for "${searchTerm}"`
+            : "Featured Computer Components"}
         </h2>
         {products.length === 0 ? (
-          <p className="text-center text-xl text-gray-600">No products found.</p>
+          <p className="text-center text-xl text-gray-600">
+            No products found.
+          </p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {products.map((product) => (
@@ -57,14 +66,16 @@ const ProductList: React.FC = () => {
 };
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
-  const productUrl = `/product/${product.id}?` + new URLSearchParams({
-    name: product.name,
-    price: product.price.toString(),
-    photoName: product.photoName,
-    memoryClock: product.specs.memoryClock,
-    memorySize: product.specs.memorySize,
-    memoryType: product.specs.memoryType
-  }).toString();
+  const productUrl =
+    `/product/${product.id}?` +
+    new URLSearchParams({
+      name: product.name,
+      price: product.price.toString(),
+      photoName: product.photoName,
+      memoryClock: product.specs.memoryClock,
+      memorySize: product.specs.memorySize,
+      memoryType: product.specs.memoryType,
+    }).toString();
 
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-xl">

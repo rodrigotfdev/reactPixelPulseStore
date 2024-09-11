@@ -14,7 +14,7 @@ const TopMenu: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const cartItemsCount = useSelector((state: RootState) => 
+  const cartItemsCount = useSelector((state: RootState) =>
     state.cart.items.reduce((total, item) => total + item.quantity, 0)
   );
 
@@ -28,7 +28,7 @@ const TopMenu: React.FC = () => {
     const newSearchTerm = e.target.value;
     setSearchInput(newSearchTerm);
     dispatch(setSearchTerm(newSearchTerm));
-    
+
     if (location.pathname !== "/") {
       navigate("/");
     }
@@ -54,7 +54,10 @@ const TopMenu: React.FC = () => {
           />
         </Link>
 
-        <form onSubmit={handleSubmit} className="flex w-9/12 h-11 justify-center font-bold">
+        <form
+          onSubmit={handleSubmit}
+          className="flex w-9/12 h-11 justify-center font-bold"
+        >
           <input
             type="search"
             placeholder="Search your product here"

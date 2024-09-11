@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
 import { removeFromCart, updateQuantity } from '../store/cartSlice';
+import { useNavigate } from 'react-router-dom';
 
 interface CartProps {
   isOpen: boolean;
@@ -11,8 +12,14 @@ interface CartProps {
 const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  const handleCheckout = () => {
+    onClose();
+    navigate('/checkout');
+  };
 
   return (
     <div className={`fixed inset-0 overflow-hidden ${isOpen ? 'z-50' : 'z-[-1]'}`}>
@@ -83,7 +90,12 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                 </div>
                 <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                 <div className="mt-6">
-                  <a href="#" className="flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Checkout</a>
+                  <button
+                    onClick={handleCheckout}
+                    className="flex justify-center items-center w-full px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                  >
+                    Checkout
+                  </button>
                 </div>
                 <div className="mt-6 flex justify-center text-sm text-center text-gray-500">
                   <p>

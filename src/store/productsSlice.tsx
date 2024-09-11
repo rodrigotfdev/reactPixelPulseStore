@@ -191,7 +191,7 @@ const productsSlice = createSlice({
   reducers: {
     setSearchTerm: (state, action: PayloadAction<string>) => {
       state.searchTerm = action.payload.toLowerCase();
-      state.filteredItems = state.items.filter(product =>
+      state.filteredItems = state.items.filter((product) =>
         product.name.toLowerCase().includes(state.searchTerm)
       );
     },
