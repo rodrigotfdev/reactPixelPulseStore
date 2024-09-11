@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
-// import { clearCart } from '../store/cartSlice';
+import { clearCart } from '../store/cartSlice';
 import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
 
 const Checkout: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -27,11 +26,24 @@ const Checkout: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Generate a random order number (in a real app, this would come from the backend)
+    const orderNumber = Math.random().toString(36).substr(2, 9).toUpperCase();
+    
     // Here you would typically send the order to your backend
     console.log('Order submitted:', { items: cartItems, shippingInfo, totalPrice });
+    
+    // Clear the cart
     dispatch(clearCart());
-    toast.success('Order placed successfully!');
-    navigate('/');
+    
+    // Navigate to the order confirmation page with order details
+    navigate('/order-confirmation', {
+      state: {
+        orderNumber,
+        items: cartItems,
+        shippingInfo,
+        totalPrice,
+      }
+    });
   };
 
   if (cartItems.length === 0) {
