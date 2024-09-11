@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../store/cartSlice'
 
 const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
+  const dispatch = useDispatch()
 
   const name = decodeURIComponent(searchParams.get('name') || '')
   const price = parseFloat(searchParams.get('price') || '0')
@@ -13,11 +16,21 @@ const ProductDetails: React.FC = () => {
   const memorySize = decodeURIComponent(searchParams.get('memorySize') || '')
   const memoryType = decodeURIComponent(searchParams.get('memoryType') || '')
 
-
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
+  const handleAddToCart = () => {
+    dispatch(addToCart({
+      id: Number(id),
+      name,
+      price,
+      photoName,
+      specs: { memoryClock, memorySize, memoryType },
+      soldOut: false,
+    }))
+    alert('Product added to cart!')
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -51,7 +64,10 @@ const ProductDetails: React.FC = () => {
             </div>
             <div className="mt-10 flex items-center justify-between">
               <span className="text-3xl font-bold text-gray-900">R$ {price.toFixed(2)}</span>
-              <button className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              <button 
+                onClick={handleAddToCart}
+                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
                 Add to Cart
               </button>
             </div>
