@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../store/cartSlice'
+import toast from 'react-hot-toast'
 
 const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -29,7 +30,10 @@ const ProductDetails: React.FC = () => {
       specs: { memoryClock, memorySize, memoryType },
       soldOut: false,
     }))
-    alert('Product added to cart!')
+    toast.success(`${name} added to cart!`, {
+      duration: 3000,
+      icon: '🛒',
+    })
   }
 
   return (
