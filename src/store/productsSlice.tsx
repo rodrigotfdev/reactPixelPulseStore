@@ -385,58 +385,7 @@ export const productData: Product[] = [
     soldOut: false,
     productCategory: "MOTHERBOARD",
   },
-  {
-    id: 27,
-    name: "",
-    specs: {
-      memoryClock: "",
-      memorySize: "",
-      memoryType: "GDDR6",
-    },
-    price: 0,
-    photoName: "",
-    soldOut: false,
-    productCategory: "CPU",
-  },
-  {
-    id: 28,
-    name: "",
-    specs: {
-      memoryClock: "",
-      memorySize: "",
-      memoryType: "GDDR6",
-    },
-    price: 0,
-    photoName: "",
-    soldOut: false,
-    productCategory: "CPU",
-  },
-  {
-    id: 29,
-    name: "",
-    specs: {
-      memoryClock: "",
-      memorySize: "",
-      memoryType: "GDDR6",
-    },
-    price: 0,
-    photoName: "",
-    soldOut: false,
-    productCategory: "CPU",
-  },
-  {
-    id: 30,
-    name: "",
-    specs: {
-      memoryClock: "",
-      memorySize: "",
-      memoryType: "GDDR6",
-    },
-    price: 0,
-    photoName: "",
-    soldOut: false,
-    productCategory: "CPU",
-  },
+  
 ];
 
 export const fetchProducts = createAsyncThunk(
