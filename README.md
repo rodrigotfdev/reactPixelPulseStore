@@ -65,4 +65,22 @@ You can preview the live app version on [Netlify](https://reactpixelpulsestore.n
 - Wishlist functionality
 - Product reviews and ratings
 
+## Project Images
+
+![Captura de tela 2024-09-16 144151](https://github.com/user-attachments/assets/d57f4a5c-6e4f-4986-a8cd-fd3532e47cb3)
+
+![Captura de tela 2024-09-16 144209](https://github.com/user-attachments/assets/31a14641-31c0-4e60-9155-e23e1c2241f3)
+
+
+![Captura de tela 2024-09-16 144250](https://github.com/user-attachments/assets/29760243-f3a3-4981-a2b9-5fb8845709f2)
+
+![Captura de tela 2024-09-16 144308](https://github.com/user-attachments/assets/ad8804b2-61c2-4ca0-9ac8-723bc70ab04d)
+
+![Captura de tela 2024-09-16 144232](https://github.com/user-attachments/assets/40f7505e-353e-4cf0-afc3-ba4ed2effe02)
+
+
+
+
+
+
 This React GPU Store project demonstrates a robust e-commerce solution with a focus on computer components. It showcases the use of modern React practices, state management with Redux, and a responsive design using Tailwind CSS.
