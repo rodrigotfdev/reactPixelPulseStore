@@ -24,10 +24,15 @@ React GPU Store is a modern e-commerce application built with React, Redux, and 
 ## Key Functionalities
 
 ✅ **Product Filtering**: Users can search for products, with results updating in real-time.
+
 ✅ **Dynamic Product Display**: Products are fetched from a simulated API and displayed with pagination.
+
 ✅ **Cart Management**: Add, remove, and update quantities of items in the cart.
+
 ✅ **Checkout Process**: Collect shipping information and process orders.
+
 ✅ **State Management**: Utilizes Redux for efficient state management across the application.
+
 ✅ **Responsive Design**: Tailwind CSS is used for a mobile-first, responsive layout.
 
 ## Code Structure and Logic
