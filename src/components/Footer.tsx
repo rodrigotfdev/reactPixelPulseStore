@@ -78,9 +78,9 @@ const Footer: React.FC = () => {
         <div className="company-section py-10 flex flex-row justify-center">
           <div className="company-section-logo">
             <img
-              src="/productsImg/logo.png"
+              src="/productsImg/main-logo.png"
               alt="Company Logo"
-              className="w-72"
+              className="w-80"
             />
           </div>
           <div className="company-section-desc text-white flex flex-col text-center justify-center w-4/12">
