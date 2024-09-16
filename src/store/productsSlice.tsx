@@ -205,7 +205,7 @@ export const productData: Product[] = [
   },
   {
     id: 13,
-    name: "Processador AMD Ryzen 9 9950X, 4.3GHz (5.7GHz Turbo), 16-Cores 32-Threads, AM5",
+    name: "AMD Ryzen 9 9950X Processor, 4.3GHz (5.7GHz Turbo), 16-Cores 32-Threads, AM5",
     specs: {
       memoryClock: "4.3GHz (5.7GHz Turbo)",
       memorySize: "16-Cores 32-Threads",
@@ -218,7 +218,7 @@ export const productData: Product[] = [
   },
   {
     id: 14,
-    name: "Processador AMD Ryzen 5 8400F, 4.2GHz (4.7GHz Turbo), 6-Cores 12-Threads, AM5",
+    name: "AMD Ryzen 5 8400F Processor, 4.2GHz (4.7GHz Turbo), 6-Cores 12-Threads, AM5",
     specs: {
       memoryClock: "4.2GHz (4.7GHz Turbo)",
       memorySize: "6-cores 12-threads",
@@ -231,7 +231,7 @@ export const productData: Product[] = [
   },
   {
     id: 15,
-    name: "Processador Intel Core i5 12600KF 3.7GHz (4.9GHz Turbo), 12ª Geração, 10-Cores 16-Threads, LGA 1700",
+    name: "Intel Core i5 12600KF Processor 3.7GHz (4.9GHz Turbo), 12th Generation, 10-Cores 16-Threads, LGA 1700",
     specs: {
       memoryClock: "3.7GHz (4.9GHz Turbo)",
       memorySize: "10-cores 16-threads",
@@ -240,24 +240,24 @@ export const productData: Product[] = [
     price: 1100,
     photoName: "productsImg/product15.jpg",
     soldOut: false,
-      productCategory: "CPU",
+    productCategory: "CPU",
   },
   {
     id: 16,
-    name: "Processador Intel Core i3 12100, 3.3GHz (4.3GHz Turbo), 12ª Geração, 4-Cores 8-Threads, LGA 1700",
+    name: "Intel Core i3 12100 Processor, 3.3GHz (4.3GHz Turbo), 12th Generation, 4-Cores 8-Threads, LGA 1700",
     specs: {
       memoryClock: "3.3GHz (4.3GHz Turbo)",
       memorySize: "4-cores 8-threads",
       memoryType: "LGA 1700",
     },
-      price: 799,
+    price: 799,
     photoName: "productsImg/product16.jpg",
     soldOut: false,
     productCategory: "CPU",
   },
   {
     id: 17,
-    name: "Processador AMD Ryzen 9 5950X 3.4GHz (4.9GHz Turbo), 16-Cores 32-Threads, AM4 ",
+    name: "AMD Ryzen 9 5950X Processor 3.4GHz (4.9GHz Turbo), 16-Cores 32-Threads, AM4",
     specs: {
       memoryClock: "3.4GHz (4.9GHz Turbo)", 
       memorySize: "16-cores 32-threads", 
@@ -270,7 +270,7 @@ export const productData: Product[] = [
   },
   {
     id: 18,
-    name: "Processador Intel Core i9 12900K 3.2GHz (5.2GHz Turbo), 12ª Geração, 16-Cores 24-Threads, LGA 1700",
+    name: "Intel Core i9 12900K Processor 3.2GHz (5.2GHz Turbo), 12th Generation, 16-Cores 24-Threads, LGA 1700",
     specs: {
       memoryClock: "3.2GHz (5.2GHz Turbo)", 
       memorySize: "16-cores 24-threads",  
@@ -283,7 +283,7 @@ export const productData: Product[] = [
   },
   {
     id: 19,
-    name: "Processador AMD Ryzen 7 7700X 4.5GHz (5.4GHz Turbo), 8-Cores 16-Threads, AM5",
+    name: "AMD Ryzen 7 7700X Processor 4.5GHz (5.4GHz Turbo), 8-Cores 16-Threads, AM5",
     specs: {
       memoryClock: "4.5GHz (5.4GHz Turbo)", 
       memorySize: "8-cores 16-threads",   
@@ -296,7 +296,7 @@ export const productData: Product[] = [
   },  
   {
     id: 20,
-    name: "Processador AMD Athlon 3000G, 3.5GHz, 2-Cores, 4-Threads, 4Mb Cache, AM4",
+    name: "AMD Athlon 3000G Processor, 3.5GHz, 2-Cores, 4-Threads, 4Mb Cache, AM4",
     specs: {
       memoryClock: "3.5GHz",  
       memorySize: "2-cores 4-threads",
@@ -309,7 +309,7 @@ export const productData: Product[] = [
   },
   {
     id: 21,
-    name: "Processador AMD Ryzen 3 3200G, 3.6GHz (4.0GHz Turbo), 4-Cores 4-Threads, Cooler Wraith Stealth, AM4",
+    name: "AMD Ryzen 3 3200G Processor, 3.6GHz (4.0GHz Turbo), 4-Cores 4-Threads, Cooler Wraith Stealth, AM4",
     specs: {
       memoryClock: "3.6GHz (4.0GHz Turbo)", 
       memorySize: "4-cores 4-threads",
@@ -322,7 +322,7 @@ export const productData: Product[] = [
   },
   {
     id: 22,
-    name: "Placa Mãe Asus Rog Maximus Z790 Formula, Chipset Z790, Wi-Fi, Intel LGA 1700",
+    name: "Asus Rog Maximus Z790 Formula Motherboard, Chipset Z790, Wi-Fi, Intel LGA 1700",
     specs: {
       memoryClock: "Z790",
       memorySize: "Intel LGA 1700",
@@ -335,7 +335,7 @@ export const productData: Product[] = [
   },
   {
     id: 23,
-    name: "Placa Mãe Gigabyte Z790 AORUS TACHYON X, Chipset Z790, WIFI, Intel LGA 1700",
+    name: "Gigabyte Z790 AORUS TACHYON X Motherboard, Chipset Z790, WIFI, Intel LGA 1700",
     specs: {
       memoryClock: "Z790",
       memorySize: "Intel LGA 1700",
@@ -348,7 +348,7 @@ export const productData: Product[] = [
   },
   {
     id: 24,
-    name: "Placa Mãe ASRock X670E Steel Legend, Chipset X670, AMD AM5",
+    name: "ASRock X670E Steel Legend Motherboard, Chipset X670, AMD AM5",
     specs: {
       memoryClock: "X670",
       memorySize: "AM5",
@@ -361,7 +361,7 @@ export const productData: Product[] = [
   },
   {
     id: 25,
-      name: "Placa Mãe Asus TUF Gaming A520M-PLUS WIFI, Chipset A520, AMD AM4, mATX, DDR4",
+    name: "Asus TUF Gaming A520M-PLUS WIFI Motherboard, Chipset A520, AMD AM4, mATX, DDR4",
     specs: {
       memoryClock: "A520",
       memorySize: "AM4",
@@ -374,7 +374,7 @@ export const productData: Product[] = [
   },
   {
     id: 26,
-    name: "Placa Mãe Gigabyte B550M AORUS Elite, Chipset B550, AMD AM4, mATX, DDR4",
+    name: "Gigabyte B550M AORUS Elite Motherboard, Chipset B550, AMD AM4, mATX, DDR4",
     specs: {
       memoryClock: "B550",
       memorySize: "AM4",
