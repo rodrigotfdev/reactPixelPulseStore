@@ -1,6 +1,6 @@
-# React GPU Store
+# Pixel Pulse Store
 
-React GPU Store is a modern e-commerce application built with React, Redux, and TypeScript. It provides a seamless shopping experience for computer components, with a focus on GPUs, CPUs, and motherboards.
+Pixel Pulse Store is a modern e-commerce application built with React, Redux, and TypeScript. It provides a seamless shopping experience for computer components, with a focus on GPUs, CPUs, and motherboards.
 
 ## Key Features
 

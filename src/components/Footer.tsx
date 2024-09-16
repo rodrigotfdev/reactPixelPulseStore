@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
             />
           </div>
           <div className="company-section-desc text-white flex flex-col text-center justify-center w-4/12">
-            <p>React GPU Store Informatics LLC.</p>
+            <p>Pixel Pulse Store LLC.</p>
 
             <p className="uppercase">Customer Service</p>
             <p>Monday to Friday from 9:00 AM to 6:00 PM</p>
