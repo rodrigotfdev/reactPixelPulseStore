@@ -16,6 +16,7 @@ const ProductDetails: React.FC = () => {
   const memoryClock = decodeURIComponent(searchParams.get("memoryClock") || "");
   const memorySize = decodeURIComponent(searchParams.get("memorySize") || "");
   const memoryType = decodeURIComponent(searchParams.get("memoryType") || "");
+  const productDesc = decodeURIComponent(searchParams.get("productDesc") || "");
   const productCategory = decodeURIComponent(
     searchParams.get("productCategory") || ""
   );
@@ -93,50 +94,17 @@ const ProductDetails: React.FC = () => {
             <p className="mt-4 text-xl text-gray-500"></p>
             <div className="mt-10">
               <h3 className="text-lg font-medium text-gray-900">
-                Specifications
+                Descrição do produto
               </h3>
               <dl className="mt-2 border-t border-b border-gray-200 divide-y divide-gray-200">
-                <div className="py-3 flex justify-between text-sm font-medium">
-                  <dt className="text-gray-500">
-                    {productCategory === "GPU"
-                      ? "Memory Clock"
-                      : productCategory === "CPU"
-                      ? "Clock Speed"
-                      : productCategory === "MOTHERBOARD"
-                      ? "Chipset"
-                      : "Memory Clock"}
-                  </dt>
-                  <dd className="text-gray-900">{memoryClock}</dd>
-                </div>
-                <div className="py-3 flex justify-between text-sm font-medium">
-                  <dt className="text-gray-500">
-                    {productCategory === "GPU"
-                      ? "Memory Size"
-                      : productCategory === "CPU"
-                      ? "Cores"
-                      : productCategory === "MOTHERBOARD"
-                      ? "Socket"
-                      : "Memory Size"}
-                  </dt>
-                  <dd className="text-gray-900">{memorySize}</dd>
-                </div>
-                <div className="py-3 flex justify-between text-sm font-medium">
-                  <dt className="text-gray-500">
-                    {productCategory === "GPU"
-                      ? "Memory Type"
-                      : productCategory === "MOTHERBOARD"
-                      ? "Memory Type"
-                      : productCategory === "CPU"
-                      ? "Socket"
-                      : "Memory Type"}
-                  </dt>
-                  <dd className="text-gray-900">{memoryType}</dd>
-                </div>
+              
+              {productDesc}
+           
               </dl>
             </div>
             <div className="mt-10 flex items-center justify-between">
               <span className="text-3xl font-bold text-gray-900">
-                $ {price.toFixed(2)}
+                R$ {price.toFixed(2)}
               </span>
               <button
                 onClick={handleAddToCart}

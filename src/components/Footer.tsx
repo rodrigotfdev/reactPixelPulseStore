@@ -11,19 +11,19 @@ const Footer: React.FC = () => {
       <div className="footer flex flex-col justify-around bg-neutral-800 text-white">
         <div className="top-section flex justify-around w-full">
           <div className="left-footer-section">
-            <h2 className="text-cyan-400 mb-5 mt-20">Company</h2>
+            <h2 className="text-cyan-400 mb-5 mt-20">Empresa</h2>
             <ul>
               <li className="mt-5 hover:text-cyan-400">
-                <a href="#">About Us</a>
+                <a href="#">Sobre Nós</a>
               </li>
               <li className="mt-5 hover:text-cyan-400">
-                <a href="#">Terms and Conditions of Sale</a>
+                <a href="#">Termos e Condições de Venda</a>
               </li>
               <li className="mt-5 hover:text-cyan-400">
-                <a href="#">Exchange and Returns Policy</a>
+                <a href="#">Política de Trocas e Devoluções</a>
               </li>
               <li className="mt-5 hover:text-cyan-400">
-                <a href="#">Cookie Policy</a>
+                <a href="#">Política de Cookies</a>
               </li>
             </ul>
           </div>
@@ -31,37 +31,37 @@ const Footer: React.FC = () => {
             <ul>
               <h2 className="text-cyan-400 mb-5 mt-20">FAQ</h2>
               <li className="mt-5 hover:text-cyan-400">
-                <a href="#">How to Buy</a>
+                <a href="#">Como Comprar</a>
               </li>
               <li className="mt-5 hover:text-cyan-400">
-                <a href="#">Shipping and Delivery</a>
+                <a href="#">Envios e Entregas</a>
               </li>
               <li className="mt-5 hover:text-cyan-400">
-                <a href="#">Payment Methods</a>
+                <a href="#">Métodos de Pagamento</a>
               </li>
               <li className="mt-5 hover:text-cyan-400">
-                <a href="#">Partner Program</a>
+                <a href="#">Programa de Parceria</a>
               </li>
             </ul>
           </div>
           <div className="right-footer-section">
             <ul>
-              <h2 className="text-cyan-400 mb-5 mt-20">Customer</h2>
+              <h2 className="text-cyan-400 mb-5 mt-20">Cliente</h2>
               <li className="mt-5 hover:text-cyan-400">
-                <a href="#">My Account</a>
+                <a href="#">Minha Conta</a>
               </li>
               <li className="mt-5 hover:text-cyan-400">
-                <a href="#">My Orders</a>
+                <a href="#">Meus Pedidos</a>
               </li>
               <li className="mt-5 hover:text-cyan-400">
-                <a href="#">My Tickets</a>
+                <a href="#">Meus Tickets</a>
               </li>
             </ul>
           </div>
         </div>
         <div className="social-section bg-neutral-700 mt-28 flex flex-col items-center">
           <div className="social-text h-14 w-full flex justify-center items-center">
-            <p>Follow Us</p>
+            <p>Nos Siga</p>
           </div>
           <div className="social-icons flex flex-row items-center justify-around w-96 h-28">
             <a href="#" className="hover:text-cyan-400">
@@ -79,15 +79,15 @@ const Footer: React.FC = () => {
           <div className="company-section-logo">
             <img
               src="/productsImg/main-logo.png"
-              alt="Company Logo"
+              alt="Logotipo da Empresa"
               className="w-80"
             />
           </div>
           <div className="company-section-desc text-white flex flex-col text-center justify-center w-4/12">
-            <p>Pixel Pulse Store LLC.</p>
+            <p>Rede Âncora</p>
 
-            <p className="uppercase">Customer Service</p>
-            <p>Monday to Friday from 9:00 AM to 6:00 PM</p>
+            <p className="uppercase">Atendimento ao Cliente</p>
+            <p>De segunda a sexta-feira, das 9:00 às 18:00</p>
           </div>
         </div>
       </div>

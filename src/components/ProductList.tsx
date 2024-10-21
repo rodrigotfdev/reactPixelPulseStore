@@ -59,7 +59,10 @@ const ProductList: React.FC = () => {
   }
 
   return (
-    <div ref={listRef} className="bg-gray-100 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div
+      ref={listRef}
+      className="bg-gray-100 min-h-screen py-12 px-4 sm:px-6 lg:px-8"
+    >
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-extrabold text-gray-900 text-center mb-12">
           {searchTerm
@@ -96,10 +99,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       name: product.name,
       price: product.price.toString(),
       photoName: product.photoName,
-      memoryClock: product.specs.memoryClock,
-      memorySize: product.specs.memorySize,
-      memoryType: product.specs.memoryType,
-      productCategory: product.productCategory,
+      productFamily: product.productFamily,
     }).toString();
 
   return (
@@ -108,7 +108,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         <img
           src={product.photoName}
           alt={product.name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain"
         />
         {product.soldOut && (
           <div className="absolute top-0 right-0 bg-red-500 text-white px-3 py-1 rounded-bl-lg">
@@ -122,21 +122,27 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             {product.name}
           </h3>
         </Link>
-        <p className={`${product.productCategory === "GPU" ? "bg-blue-500" : product.productCategory === "CPU" ? "bg-green-500" : "bg-gray-500" }  text-white px-2 py-1 rounded-full inline-block mb-2`}>
-          {product.productCategory}
+        <p
+          className={`${
+            product.productFamily === "GPU"
+              ? "bg-blue-500"
+              : product.productFamily === "CPU"
+              ? "bg-green-500"
+              : "bg-gray-500"
+          }  text-white px-2 py-1 rounded-full inline-block mb-2`}
+        >
+          {product.productFamily}
         </p>
-        <p className="text-sm text-gray-600 mb-4">
-          {product.specs.memorySize} {product.specs.memoryType}
-        </p>
+      
         <div className="flex justify-between items-center">
           <span className="text-2xl font-bold text-indigo-600">
-            $ {product.price.toFixed(2)}
+            R$ {product.price.toFixed(2)}
           </span>
           <Link
             to={productUrl}
             className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition duration-300"
           >
-            View Details
+            Ver Detalhes
           </Link>
         </div>
       </div>

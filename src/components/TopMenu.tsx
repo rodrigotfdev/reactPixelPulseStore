@@ -60,7 +60,7 @@ const TopMenu: React.FC = () => {
         >
           <input
             type="search"
-            placeholder="Search your product here"
+            placeholder="Pesquise seu produto desejado aqui"
             className="w-10/12 p-2 mx-5 text-black rounded-l-md focus:outline-none focus:ring-2 focus:ring-cyan-400"
             value={searchInput}
             onChange={handleSearch}
