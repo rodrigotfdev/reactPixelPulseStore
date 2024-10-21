@@ -2,12 +2,16 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 export interface Product {
   id: number;
-  name: string; // Alterado de 'name' para 'productName'
-  productDesc: string; // Adicionado para descrição do produto
+  name: string;
+  specs: {
+    memoryClock: string;
+    memorySize: string;
+    memoryType: string;
+  };
   price: number;
   photoName: string;
   soldOut: boolean;
-  productFamily: string; // Alterado de 'productCategory' para 'productFamily'
+  productCategory: string;
 }
 
 interface ProductsState {
@@ -41,180 +45,353 @@ const shuffleArray = (array: Product[]) => {
   return shuffled;
 };
 
-
 export const productData: Product[] = [
   {
     id: 1,
-    name: "Aditivo De Combustível Diesel S10 Bardahl Max S10",
-    productDesc: "Este aditivo de combustível é produzido pela Bardahl, uma marca conhecida e respeitada na indústria automotiva. Com o número de peça 436846, você pode ter certeza de que está recebendo um produto genuíno e de alta qualidade. O volume da unidade é de 0.5 L, proporcionando uma quantidade suficiente para múltiplas aplicações.",
-    price: 39.89,
+    name: "Gigabyte NVIDIA GeForce RTX 3060 WINDFORCE OC Graphics Card",
+    specs: {
+      memoryClock: "1500 MHz",
+      memorySize: "12 GB",
+      memoryType: "GDDR6",
+    },
+    price: 1799,
     photoName: "productsImg/product01.jpg",
     soldOut: false,
-    productFamily: "Aditivo",
+    productCategory:"GPU",
   },
   {
     id: 2,
-    name: "Macaco Joelho 600kg Universal Bosal Corsa Celta Onix Prisma",
-    productDesc: "O Macaco Joelho Maxi Light Universal - Mecanico é um produto de alta qualidade da marca BOSAL, conhecida por sua excelência em equipamentos automotivos.",
-    price: 129.68,
+    name: "Gigabyte AMD Radeon RX 7600 Gaming OC Graphics Card",
+    specs: {
+      memoryClock: "18 Gbps",
+      memorySize: "8 GB",
+      memoryType: "GDDR6",
+      
+    },
+    price: 1799,
     photoName: "productsImg/product02.jpg",
     soldOut: false,
-    productFamily: "Ferramentas",
+    productCategory: "GPU",
   },
   {
     id: 3,
-    name: "Multimetro Com Capacímetro Digital - Mede Capacitor",
-    productDesc: "Multímetro Digital Capacímetro Beep Tela Lcd Dt 9205a 9kf possui tensão máxima CC de 1000V, garantindo medições precisas e seguras.",
-    price: 99.98,
+    name: "PowerColor Fighter Radeon RX 6600 Graphics Card",
+    specs: {
+      memoryClock: "14 Gbps",
+      memorySize: "8 GB",
+      memoryType: "GDDR6",
+    },
+    price: 1299,
     photoName: "productsImg/product03.jpg",
     soldOut: false,
-    productFamily: "Ferramentas",
+    productCategory: "GPU",
   },
   {
     id: 4,
-    name: "Chave De Roda Cruz 17x19x21x23 Eda",
-    productDesc: "Chave de Roda Cruz 9RU fabricada em aço resistente para maior durabilidade.",
-    price: 61.59,
+    name: "INNO3D GeForce RTX 3060 TWIN X2 Graphics Card",
+    specs: {
+      memoryClock: "15 Gbps",
+      memorySize: "12 GB",
+      memoryType: "GDDR6",
+    },
+    price: 1699,
     photoName: "productsImg/product04.jpg",
     soldOut: false,
-    productFamily: "Ferramentas",
+    productCategory: "GPU",
   },
   {
     id: 5,
-    name: "4 Litros Óleo Motor Mineral Castrol Gtx Antiborra Sae 20w50",
-    productDesc: "O óleo é uma parte essencial para o bom funcionamento do motor do seu veículo, pois tem a função de limpar e lubrificar, buscando protegê-lo do desgaste e da corrosão.",
-    price: 197.78,
-    photoName: "productsImg/product05.jpg",
+    name: "Galax GeForce GTX 1650 EX PLUS Graphics Card",
+    specs: {
+      memoryClock: "18 Gbps",
+      memorySize: "4 GB",
+      memoryType: "GDDR6",
+    },
+    price: 879,
+    photoName: "productsImg/product05.png",
     soldOut: false,
-    productFamily: "Óleo",
+    productCategory: "GPU",
   },
   {
     id: 6,
-    name: "Aditivo Para Radiador Pronto Uso Paraflu 1 litro Rosa",
-    productDesc: "Paraflu Bio Orgânico possui a tecnologia Long Life OAT (Organic Acid Tecnology), que aumenta a vida útil do motor lubrificando a bomba d’água, a válvula termostática, evitando o ressecamento das mangueiras e protegendo contra a corrosão todos os tipos de motores.",
-    price: 27.99,
-    photoName: "productsImg/product06.jpg",
+    name: "Gigabyte GeForce RTX 4070 Ti Eagle OC Graphics Card",
+    specs: {
+      memoryClock: "2625 MHz",
+      memorySize: "12 GB",
+      memoryType: "GDDR6",
+    },
+    price: 5999,
+    photoName: "productsImg/product06.png",
     soldOut: false,
-    productFamily: "Aditivo",
+    productCategory: "GPU",
   },
   {
     id: 7,
-    name: "Pneu 175/70r13 General Tire Altimax One 82t Índice de velocidade T",
-    productDesc: "Baixo ruído devido à sua banda de rodagem desenvolvida com tecnologia acústica de modulação de som",
-    price: 390.27,
-    photoName: "productsImg/product07.jpg",
+    name: "Galax NVIDIA GeForce RTX 4070 EX Gamer Graphics Card",
+    specs: {
+      memoryClock: "2550 MHz",
+      memorySize: "12 GB",
+      memoryType: "GDDR6",
+    },
+    price: 4479,
+    photoName: "productsImg/product07.png",
     soldOut: false,
-    productFamily: "Pneu",
+    productCategory: "GPU",
   },
   {
     id: 8,
-    name: "3 Cera Limpadora E Polidora Orbi-max Proteção E Brilho 200g",
-    productDesc: "A cera automotiva Orbi-Max remove a tinta oxidada, manchas e auxilia na remoção de sujidades diversas (piche, insetos) após sua aplicação, deixa uma camada de proteção contra as intempéries",
-    price: 53.55,
-    photoName: "productsImg/product08.jpg",
+    name: "Asus Dual NVIDIA GeForce RTX 4060 Ti OC Graphics Card",
+    specs: {
+      memoryClock: "2550 MHz",
+      memorySize: "8 GB",
+      memoryType: "GDDR6",
+    },
+    price: 2399,
+    photoName: "productsImg/product08.png",
     soldOut: false,
-    productFamily: "Cera",
+    productCategory: "GPU",
   },
   {
     id: 9,
-    name: "Kit 02 Cinemático Rodoar Calibrador Roda Pneu Voar Caminhão",
-    productDesc: " Este produto de alta qualidade da marca Voar é essencial para manter a calibragem correta dos pneus, garantindo uma melhor performance nas estradas.",
-    price: 102.99,
-    photoName: "productsImg/product09.jpg",
-    soldOut: true,
-    productFamily: "Ferramentas",
+    name: "PowerColor Hellhound AMD Radeon RX 6650 XT Graphics Card",
+    specs: {
+      memoryClock: "2550 MHz",
+      memorySize: "12 GB",
+      memoryType: "GDDR6",
+    },
+    price: 2849,
+    photoName: "productsImg/product09.png",
+    soldOut: false,
+    productCategory: "GPU",
   },
   {
     id: 10,
-    name: "Kit 4 Água Para Bateria E Radiador Desmineralizada Paraflu",
-    productDesc: "A Água Desmineralizada PARAFLU é recomendada para uso em sistemas de arrefecimento de motores endotérmicos e também em sistemas elétricos automotivos.",
-    price: 49.26,
-    photoName: "productsImg/product10.jpg",
-    soldOut: true,
-    productFamily: "Aditivo",
+    name: "AsRock AMD Radeon RX 7600 Phantom Gaming OC Graphics Card",
+    specs: {
+      memoryClock: "2550 MHz",
+      memorySize: "8 GB",
+      memoryType: "GDDR6",
+    },
+    price: 1999,
+    photoName: "productsImg/product10.png",
+    soldOut: false,
+    productCategory: "GPU",
   },
   {
     id: 11,
-    name: "Óleo Lubrificante Corrente Bardahl Maxlub Kart E Moto",
-    productDesc: "O Óleo Especial Lubrificante Corrente Bardahl Kart Moto é o produto ideal para garantir o melhor desempenho e durabilidade da corrente da sua moto ou quadriciclo.",
-    price: 39.90,
+    name: "INNO3D NVIDIA GeForce RTX 4070 X3 OC Graphics Card",
+    specs: {
+      memoryClock: "1920 MHz",
+      memorySize: "12 GB",
+      memoryType: "GDDR6",
+    },
+    price: 4299,
     photoName: "productsImg/product11.jpg",
     soldOut: false,
-    productFamily: "Óleo",
-  },
-  {
-    id: 14,
-    name: "Pistola De Pintura Gravidade - Hvlp Bico1,4mm C/manômetro",
-    productDesc: "Ideal para aplicações em Madeiras, Metais, Plásticos, Superficies Cerâmicas, bem como Serviçoes de Funilaria, tanto em Ambientes Fechados como Abertos.",
-    price: 356.12,
-    photoName: "productsImg/product14.jpg",
-    soldOut: false,
-    productFamily: "Ferramentas",
+    productCategory: "GPU",
   },
   {
     id: 12,
-    name: "Lubrificante Para Correntes - Chain Lub Mobil Super Moto",
-    productDesc: "O Lubrificante Para Correntes - Chain Lub Mobil Super Moto é um produto de alta qualidade, desenvolvido pela renomada marca Mobil.",
-    price: 33.68,
-    photoName: "productsImg/product12.jpg",
+    name: "MSI AMD Radeon RX 6650 XT MECH 2X OC Graphics Card",
+    specs: {
+      memoryClock: "2699 MHz",
+      memorySize: "8 GB",
+      memoryType: "GDDR6",
+    },
+    price: 1999,
+    photoName: "productsImg/product12.png",
     soldOut: false,
-    productFamily: "Lubrificante",
+    productCategory: "GPU",
   },
-  
   {
     id: 13,
-    name: "Óleo Lubrificante Cambio Diferencia Dexron 3 1 L Menzoil",
-    productDesc: "O óleo é uma parte essencial para o bom funcionamento do motor do seu veículo, pois tem a função de limpar e lubrificar, buscando protegê-lo do desgaste e da corrosão.",
-    price: 50.00,
+    name: "AMD Ryzen 9 9950X Processor, 4.3GHz (5.7GHz Turbo), 16-Cores 32-Threads, AM5",
+    specs: {
+      memoryClock: "4.3GHz (5.7GHz Turbo)",
+      memorySize: "16-Cores 32-Threads",
+      memoryType: "AM5",
+    },
+    price: 6299,
     photoName: "productsImg/product13.jpg",
     soldOut: false,
-    productFamily: "Lubrificante",
-   
+    productCategory: "CPU",
+  },
+  {
+    id: 14,
+    name: "AMD Ryzen 5 8400F Processor, 4.2GHz (4.7GHz Turbo), 6-Cores 12-Threads, AM5",
+    specs: {
+      memoryClock: "4.2GHz (4.7GHz Turbo)",
+      memorySize: "6-cores 12-threads",
+      memoryType: "AM5",
+    },
+    price: 899,
+    photoName: "productsImg/product14.jpg",
+    soldOut: false,
+    productCategory: "CPU",
   },
   {
     id: 15,
-    name: "Kit Jogo Profissional Lima Agulha Com 6 Peças Eda 7gm",
-    productDesc: "Aproveite a qualidade profissional das limas tipo agulha EDA para realizar seus trabalhos com precisão e eficiência. Compostas por materiais de alta qualidade, como madeira e aço, essas limas são perfeitas para modelar e dar acabamento em diversos materiais.",
-    price: 39.90,
+    name: "Intel Core i5 12600KF Processor 3.7GHz (4.9GHz Turbo), 12th Generation, 10-Cores 16-Threads, LGA 1700",
+    specs: {
+      memoryClock: "3.7GHz (4.9GHz Turbo)",
+      memorySize: "10-cores 16-threads",
+      memoryType: "LGA 1700",
+    },
+    price: 1100,
     photoName: "productsImg/product15.jpg",
     soldOut: false,
-    productFamily: "Ferramentas",
+    productCategory: "CPU",
   },
   {
     id: 16,
-    name: "Filtro Ar Esportivo Cbx250 Twister 2001 A 2008 53mm",
-    productDesc: "Os filtros fabricados pela marca Eksim tem como base o modelo original produzido pelo fabricante, que oferece o mesmo fluxo e a mesma capacidade de filtragem do item original.",
-    price: 35.66,
+    name: "Intel Core i3 12100 Processor, 3.3GHz (4.3GHz Turbo), 12th Generation, 4-Cores 8-Threads, LGA 1700",
+    specs: {
+      memoryClock: "3.3GHz (4.3GHz Turbo)",
+      memorySize: "4-cores 8-threads",
+      memoryType: "LGA 1700",
+    },
+    price: 799,
     photoName: "productsImg/product16.jpg",
     soldOut: false,
-    productFamily: "Acessórios",
+    productCategory: "CPU",
   },
   {
     id: 17,
-    name: "Óleo Lubrificante de Motor 5W-40 Sintético SN",
-    productDesc: "Esse tipo de produto possui maior resistência a temperaturas altas e melhor desempenho em temperaturas baixas. Por isso, esses óleos são excelentes para a proteção do seu motor. ",
-    price: 49.99,
+    name: "AMD Ryzen 9 5950X Processor 3.4GHz (4.9GHz Turbo), 16-Cores 32-Threads, AM4",
+    specs: {
+      memoryClock: "3.4GHz (4.9GHz Turbo)", 
+      memorySize: "16-cores 32-threads", 
+      memoryType: "AM4",
+    },
+    price: 2869,
     photoName: "productsImg/product17.jpg",
     soldOut: false,
-    productFamily: "Óleo",
+    productCategory: "CPU",
   },
   {
     id: 18,
-    name: "Estator Magnetron Turuna125 ",
-    productDesc: "A Magnetron é pioneira na industrialização de sistemas de ignição e energia. Sendo reconhecidamente. a melhor opção em peças de reposição para motos.",
-    price: 172.50,
+    name: "Intel Core i9 12900K Processor 3.2GHz (5.2GHz Turbo), 12th Generation, 16-Cores 24-Threads, LGA 1700",
+    specs: {
+      memoryClock: "3.2GHz (5.2GHz Turbo)", 
+      memorySize: "16-cores 24-threads",  
+      memoryType: "LGA 1700",
+    },
+    price: 2300,
     photoName: "productsImg/product18.jpg",
     soldOut: false,
-    productFamily: "Acessórios",
+    productCategory: "CPU",
   },
-  
+  {
+    id: 19,
+    name: "AMD Ryzen 7 7700X Processor 4.5GHz (5.4GHz Turbo), 8-Cores 16-Threads, AM5",
+    specs: {
+      memoryClock: "4.5GHz (5.4GHz Turbo)", 
+      memorySize: "8-cores 16-threads",   
+      memoryType: "AM5",
+    },
+    price: 2599,
+    photoName: "productsImg/product19.jpg",
+    soldOut: false, 
+    productCategory: "CPU",
+  },  
+  {
+    id: 20,
+    name: "AMD Athlon 3000G Processor, 3.5GHz, 2-Cores, 4-Threads, 4Mb Cache, AM4",
+    specs: {
+      memoryClock: "3.5GHz",  
+      memorySize: "2-cores 4-threads",
+      memoryType: "GDDR6",
+    },
+    price: 329,
+    photoName: "productsImg/product20.jpg",
+    soldOut: false,
+    productCategory: "CPU",
+  },
+  {
+    id: 21,
+    name: "AMD Ryzen 3 3200G Processor, 3.6GHz (4.0GHz Turbo), 4-Cores 4-Threads, Cooler Wraith Stealth, AM4",
+    specs: {
+      memoryClock: "3.6GHz (4.0GHz Turbo)", 
+      memorySize: "4-cores 4-threads",
+      memoryType: "AM4",
+    },
+    price: 499,
+    photoName: "productsImg/product21.jpg",
+    soldOut: false,
+    productCategory: "CPU",
+  },
+  {
+    id: 22,
+    name: "Asus Rog Maximus Z790 Formula Motherboard, Chipset Z790, Wi-Fi, Intel LGA 1700",
+    specs: {
+      memoryClock: "Z790",
+      memorySize: "Intel LGA 1700",
+      memoryType: "DDR5",
+    },
+    price: 2599,
+    photoName: "productsImg/product22.jpg",
+    soldOut: false,
+    productCategory: "MOTHERBOARD",
+  },
+  {
+    id: 23,
+    name: "Gigabyte Z790 AORUS TACHYON X Motherboard, Chipset Z790, WIFI, Intel LGA 1700",
+    specs: {
+      memoryClock: "Z790",
+      memorySize: "Intel LGA 1700",
+      memoryType: "DDR5",
+    },
+    price: 4819,
+    photoName: "productsImg/product23.jpg",
+    soldOut: false,
+    productCategory: "MOTHERBOARD",
+  },
+  {
+    id: 24,
+    name: "ASRock X670E Steel Legend Motherboard, Chipset X670, AMD AM5",
+    specs: {
+      memoryClock: "X670",
+      memorySize: "AM5",
+      memoryType: "DDR5",
+    },
+    price: 1999,
+    photoName: "productsImg/product24.jpg",
+    soldOut: false,
+    productCategory: "MOTHERBOARD",
+  },
+  {
+    id: 25,
+    name: "Asus TUF Gaming A520M-PLUS WIFI Motherboard, Chipset A520, AMD AM4, mATX, DDR4",
+    specs: {
+      memoryClock: "A520",
+      memorySize: "AM4",
+      memoryType: "DDR4",
+    },
+    price: 649,
+    photoName: "productsImg/product25.jpg",
+    soldOut: false,
+    productCategory: "MOTHERBOARD",
+  },
+  {
+    id: 26,
+    name: "Gigabyte B550M AORUS Elite Motherboard, Chipset B550, AMD AM4, mATX, DDR4",
+    specs: {
+      memoryClock: "B550",
+      memorySize: "AM4",
+      memoryType: "DDR4",
+    },
+    price: 799,
+    photoName: "productsImg/product26.jpg",
+    soldOut: false,
+    productCategory: "MOTHERBOARD",
+  },
   
 ];
 
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async () => {
-  
+    // Simulating API call with a delay
     await new Promise((resolve) => setTimeout(resolve, 500));
     return shuffleArray(productData); // Shuffle only when fetching
   }

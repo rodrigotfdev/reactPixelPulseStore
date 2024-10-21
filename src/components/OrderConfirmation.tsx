@@ -31,10 +31,10 @@ const OrderConfirmation: React.FC = () => {
   if (!orderDetails) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h2 className="text-3xl font-extrabold text-gray-900">Confirmação do Pedido</h2>
-        <p className="mt-2 text-lg text-gray-600">Nenhum detalhe do pedido encontrado. Por favor, tente fazer um pedido novamente.</p>
+        <h2 className="text-3xl font-extrabold text-gray-900">Order Confirmation</h2>
+        <p className="mt-2 text-lg text-gray-600">No order details found. Please try placing an order again.</p>
         <Link to="/" className="mt-4 inline-block text-indigo-600 hover:text-indigo-500">
-          Voltar para a Home
+          Return to Home
         </Link>
       </div>
     );
@@ -42,15 +42,15 @@ const OrderConfirmation: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h2 className="text-3xl font-extrabold text-gray-900">Confirmação do Pedido</h2>
-      <p className="mt-2 text-lg text-gray-600">Obrigado pelo seu pedido!</p>
+      <h2 className="text-3xl font-extrabold text-gray-900">Order Confirmation</h2>
+      <p className="mt-2 text-lg text-gray-600">Thank you for your order!</p>
       
       <div className="mt-8">
-        <h3 className="text-xl font-semibold text-gray-900">Detalhes do Pedido</h3>
-        <p className="mt-2 text-gray-600">Número do Pedido: {orderDetails.orderNumber}</p>
+        <h3 className="text-xl font-semibold text-gray-900">Order Details</h3>
+        <p className="mt-2 text-gray-600">Order Number: {orderDetails.orderNumber}</p>
         
         <div className="mt-6">
-          <h4 className="text-lg font-semibold text-gray-900">Itens Pedidos</h4>
+          <h4 className="text-lg font-semibold text-gray-900">Items Ordered</h4>
           <ul className="mt-2 divide-y divide-gray-200">
             {orderDetails.items.map((item) => (
               <li key={item.id} className="py-4 flex">
@@ -61,7 +61,7 @@ const OrderConfirmation: React.FC = () => {
                     {item.specs.memorySize} {item.specs.memoryType}
                   </p>
                   <p className="mt-1 text-sm text-gray-500">
-                    Quantidade: {item.quantity} | Preço: R$ {item.price.toFixed(2)}
+                    Quantity: {item.quantity} | Price: R$ {item.price.toFixed(2)}
                   </p>
                 </div>
               </li>
@@ -70,7 +70,7 @@ const OrderConfirmation: React.FC = () => {
         </div>
         
         <div className="mt-6">
-          <h4 className="text-lg font-semibold text-gray-900">Informações de Envio</h4>
+          <h4 className="text-lg font-semibold text-gray-900">Shipping Information</h4>
           <p className="mt-2 text-gray-600">{orderDetails.shippingInfo.fullName}</p>
           <p className="text-gray-600">{orderDetails.shippingInfo.address}</p>
           <p className="text-gray-600">
@@ -86,7 +86,7 @@ const OrderConfirmation: React.FC = () => {
       </div>
       
       <Link to="/" className="mt-8 inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-500">
-        Continuar Comprando
+        Continue Shopping
       </Link>
     </div>
   );
